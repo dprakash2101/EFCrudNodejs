@@ -10,27 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '14'
+        node-version: 14
 
-    - name: Install dependencies and generate/update package-lock.json
-      run: |
-        npm install
-        git add package-lock.json
-        git commit -m "Update package-lock.json" || true
-        git push origin main
+    - name: Install dependencies
+      run: npm install
 
-    - name: Build SDK (replace with your build command if needed)
+    - name: Build SDK
       run: npm run build
+
+    - name: Authenticate with npm
+      run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
     - name: Publish to npm
       run: npm publish
-      timeout-minutes: 10  # Adjust the timeout as needed
-
       env:
-        NODE_AUTH_TOKEN: ${{secrets.AUTOMATE_NJS_TOKEN}}
+        NODE_AUTH_TOKEN: ${{ secrets.AUTOMATE_NJS_TOKEN }}
+

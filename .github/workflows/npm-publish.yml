@@ -13,13 +13,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '14'
 
-    - name: Install dependencies
-      run: npm install
+    - name: Install dependencies and generate/update package-lock.json
+      run: |
+        npm install
+        git add package-lock.json
+        git commit -m "Update package-lock.json" || true
+        git push origin main
 
     - name: Build SDK (replace with your build command if needed)
       run: npm run build
@@ -28,4 +32,4 @@ jobs:
       run: npm publish
 
       env:
-        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

@@ -17,7 +17,7 @@
     "superagent": "^5.3.0"
   },
   "devDependencies": {
-    // ... your existing devDependencies
+    
   },
   "files": [
     "dist"

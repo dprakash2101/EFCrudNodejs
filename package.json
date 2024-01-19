@@ -10,7 +10,6 @@
     "test": "mocha --require @babel/register --recursive"
   },
   "repository": "EFCrudNodeJs",
-
   "browser": {
     "fs": false
   },

@@ -9,7 +9,10 @@
     "prepare": "npm run build",
     "test": "mocha --require @babel/register --recursive"
   },
-  "repository": "EFCrudNodeJs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dprakash2101/EFCrudNodejs.git"
+  },
   "browser": {
     "fs": false
   },
